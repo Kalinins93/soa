@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer
+
+  Created: Wed Aug 05 12:06:25 PDT 2020
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="SpellerBPELProcess"
+               targetNamespace="http://neoflex.ru/DevGuideApp/Project1/SpellerBPELProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://neoflex.ru/DevGuideApp/Project1/SpellerBPELProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://neoflex.ru/DevGuideApp/Project1/MySpellerWebService"
+         xmlns:ns2="http://speller.yandex.net/services/spellservice">
+
+  <!--
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC
+     Set of activities coordinating the flow of messages across the
+     services integrated within this business process
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="MySpellerWebService" partnerLinkType="ns1:MySpellerWebService" myRole="CheckTextPortType"/>
+    <partnerLink name="YandexSpellerWebService" partnerLinkType="ns2:YandexSpellerWebService"
+                 partnerRole="SpellServiceSoap"/>
+  </partnerLinks>
+  <variables>
+    <variable name="CheckText_InputVariable" messageType="ns1:requestMessage"/>
+    <variable name="YandexSpellService_checkText_InputVariable" messageType="ns2:checkTextSoapIn"/>
+    <variable name="YandexSpellService_checkText_OutputVariable" messageType="ns2:checkTextSoapOut"/>
+  </variables>
+  <sequence name="main">
+    <receive name="ReceiveCheckText" createInstance="yes" partnerLink="MySpellerWebService"
+             portType="ns1:CheckTextPortType" operation="CheckText" variable="CheckText_InputVariable"/>
+    <invoke name="InvokeYandexSpellService" partnerLink="YandexSpellerWebService"
+            portType="ns2:SpellServiceSoap" operation="checkText"
+            inputVariable="YandexSpellService_checkText_InputVariable"
+            outputVariable="YandexSpellService_checkText_OutputVariable" bpelx:invokeAsDetail="no"/>
+  </sequence>
+</process>
