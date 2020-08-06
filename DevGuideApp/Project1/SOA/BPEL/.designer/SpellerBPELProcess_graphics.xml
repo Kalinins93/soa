@@ -5,9 +5,9 @@
    <iconize/>
    <partnerlink_locations>
       <partnerlink name="MySpellerWebService" x="0" y="382" side="left"/>
-      <partnerlink name="YandexSpellerWebService" x="601" y="284" side="right"/>
+      <partnerlink name="YandexSpellerWebService" x="585" y="284" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,593,774,230" show_swimlanes="true">
+   <graph_layout viewport="0,406,758,230" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
    </graph_layout>
