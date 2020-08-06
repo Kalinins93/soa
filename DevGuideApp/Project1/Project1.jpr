@@ -230,6 +230,7 @@
       <hash n="runConfigurationDefinitions">
          <hash n="Default">
             <value n="custom" v="false"/>
+            <list n="EnvironmentVariables"/>
             <value n="name" v="Default"/>
             <hash n="oracle.jdevimpl.runner.debug.DebugConfiguration">
                <value n="remoteParameter:SOA:hostname" v="localhost"/>
@@ -304,6 +305,9 @@
             <url path="SOA/"/>
          </list>
       </hash>
+   </hash>
+   <hash n="ResourceBundleOptions">
+      <list n="RegisteredResourceBundles"/>
    </hash>
    <value n="SCA_BPEL_FOLDER_PROPERTY_NAME" v="BPEL/"/>
 </jpr:project>
